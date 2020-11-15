@@ -1,0 +1,38 @@
+.nav__all-item {
+    padding-top: 10rem;
+    font-size: 1.3rem;
+}
+
+.nav__all-item a {
+    color: rgb(190, 190, 190);
+}
+
+.nav__all-item span {
+    font-weight: bold;
+}
+
+.nav__all-item a:hover {
+    color: black;
+}
+
+.pagination {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: rgb(216, 216, 216);
+}
