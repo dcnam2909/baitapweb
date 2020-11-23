@@ -1,0 +1,111 @@
+.details-category {
+    margin-top: 5rem;
+    border-top: solid 1px #ebebeb;
+}
+
+
+.details {
+    margin-top: 3rem;
+    display: flex;
+}
+
+.details__img {
+    width: 40%;
+    margin-right: 4rem;
+    border: solid 1px #fbfbfb;
+}
+
+.details__img img {
+    width: 100%;
+
+}
+
+.info__seperate {
+    width: 6%;
+    border-top: 4px solid #bbb;
+    border-radius: 5px;
+    margin: 1rem 0;
+}
+
+.info__name {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.info__price {
+    font-size: 2rem;
+}
+
+.info__price span {
+    color: red;
+}
+
+.details__info {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info__soluong {
+    margin-top: 2rem;
+    display: flex;
+}
+
+.info__amount {
+    margin-right: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px #e0e0e0;
+    width: 6rem;
+    height: 3rem;
+}
+
+.amount-btn {
+    height: 100%;
+    width: 25%;
+    border: 0;
+    outline: 0;
+    font-size: 1.5rem;
+}
+
+.btn-munis {
+    border-right: solid 1px #e0e0e0;
+}
+
+.btn-plus {
+    border-left: solid 1px #e0e0e0;
+}
+
+.amount-btn:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.amount {
+    font-size: 1.5rem;
+}
+
+.info__buy {
+    height: 3rem;
+    width: 9rem;
+}
+
+.info__seperate.details {
+    border-width: 2px;
+    border-color: rgb(206, 206, 206);
+    width: 38%;
+}
+
+.mota {
+    font-size: 1rem;
+    width: 7rem;
+    height: 2rem;
+}
+
+
+.details_mota--letter {
+    padding: 3rem 0;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+}

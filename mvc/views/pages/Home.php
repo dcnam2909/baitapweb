@@ -1,16 +1,13 @@
-<link rel="stylesheet" href="./public/css/main.css">
-<link rel="stylesheet" href="./public/css/resetcss.css">
 <div class="banner">
-<script src="../public/js/main.js"></script>
-    <!-- Banner JS -->
-    <div class="banner__img" id="banner__img">
-        <button class="banner__btn" id="left--btn" onclick="leftMove()"><i class="fas fa-chevron-left banner__icon left"></i></button>
-        <img src="../public/img/banner-1.png" alt="" class="banner-img">
-        <img src="../public/img/banner2.png" alt="" class="banner-img" hidden>
-        <img src="../public/img/banner3.png" alt="" class="banner-img" hidden>
-        <button class="banner__btn" id="right--btn" onclick="rightMove()"><i class="fas fa-chevron-right banner__icon right"></i></button>
+        <!-- Banner JS -->
+        <div class="banner__img" id="banner__img">
+            <button class="banner__btn" id="left--btn" onclick="leftMove()"><i class="fas fa-chevron-left banner__icon left"></i></button>
+            <img src="/B1706613/public/img/banner-1.png" alt="" class="banner-img">
+            <img src="/B1706613/public/img/banner2.png" alt="" class="banner-img" hidden>
+            <img src="/B1706613/public/img/banner3.png" alt="" class="banner-img" hidden>
+            <button class="banner__btn" id="right--btn" onclick="rightMove()"><i class="fas fa-chevron-right banner__icon right"></i></button>
+        </div>
     </div>
-</div>
 <div class="container__top">
     <div class="intro" style="font-family: 'Indie Flower', cursive;
     ">Sản phẩm mới nhất</div>
@@ -29,13 +26,13 @@
             <button class="item__buy btn" type="button" name="buy-now__btn">MUA NGAY</button>
         </div>
         <div class="item__info">
-            <a href="#" class="item__info--name"><?php echo $row["tenhh"] ?></a>
+            <a href="/B1706613/Home/Details/<?php echo $row["mshh"];?>" class="item__info--name" > <?php echo $row["tenhh"]; ?></a>
             <div><span class="item__info--price">
-            <?php echo $row["gia"] ?>
+            <?php echo number_format($row["gia"], 0, '', ','); ?>
                 </span> đ</div>
         </div>
     </div>
     <?php } ?>
 </div>
-<a href="AllCategory/1" class="btn__more"><button type="button" class="btn--more btn">Xem Thêm Sản Phẩm</button></a>
+<a href="/B1706613/Home/AllCategory/1" class="btn__more"><button type="button" class="btn--more btn">Xem Thêm Sản Phẩm</button></a>
 

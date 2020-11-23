@@ -1,6 +1,4 @@
 <link rel="stylesheet" href="../../public/css/allcate.css">
-<link rel="stylesheet" href="../../public/css/main.css">
-    <link rel="stylesheet" href="../../public/css/resetcss.css">
 <div class="nav__all-item max-width">
     <a href="#">TRANG CHỦ</a>
     <span>/ TẤT CẢ SẢN PHẨM</span>
@@ -24,7 +22,6 @@
 </div>
 <div class="pagination">
     <?php $pagetotal = round($data["pagenumb"]/20) + 1;?>
-    
     <?php
         for ($i = 1; $i <= $pagetotal ; $i++){
             echo '<a href="'.$pagetotal.'">1</a>';

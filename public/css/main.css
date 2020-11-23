@@ -621,10 +621,7 @@ hr {
     font-weight: lighter;
 }
 
-.footer {
-    margin-top: 5rem;
-    border-top: solid 1px gray
-}
+
 
 /* banner */
 .banner {
@@ -683,6 +680,76 @@ hr {
     width: 100%;
 }
 
+/* footer */
+
+a {
+    text-decoration: none;
+
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+}
+
+.clear {
+    clear: both;
+}
+
 footer {
-    padding-top: 5rem;
+
+    background-color: #2E3639;
+    position: relative;
+    z-index: 1;
+}
+
+footer .splitter {
+    background-color: #ebebeb;
+    height: 5px;
+}
+
+
+
+
+footer .bar {
+    background-color: white;
+    padding: 20px 0;
+}
+
+footer .bar-wrap {
+
+    font-size: 12px;
+    margin: 0 auto;
+    max-width: 1200px;
+    position: relative;
+    width: 95%;
+
+}
+
+.links {
+    float: left;
+    list-style: none outside none;
+    position: relative;
+}
+
+.links li {
+    float: left;
+    margin-right: 10px;
+}
+
+.links a {
+    color: #778888;
+    font-size: 2rem;
+}
+
+.links a:hover {
+    color: black;
+}
+
+
+
+.copyright {
+    font-size: 1.5rem;
+    color: #778888;
+    margin-top: 5px;
 }

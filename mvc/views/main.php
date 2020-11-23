@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/main.css">
-    <link rel="stylesheet" href="../public/css/resetcss.css">
+    <link rel="stylesheet" href="/B1706613/public/css/main.css">
+    <link rel="stylesheet" href="/B1706613/public/css/resetcss.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Trispace&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+ 
     <title>V Bird</title>
 </head>
 
@@ -29,7 +30,7 @@
         </div>
         <div class="header__main border__container">
             <div class="header__navbar max-width">
-                <a href="#" class="header__name">VBIRD</a>
+                <a href="/B1706613/" class="header__name">VBIRD</a>
                 <ul class="header__nav">
                     <li class="header__nav-item "><a class="item__link" href="index.html">TRANG CHỦ</a></li>
                     <li class="header__nav-item "><a class="item__link" href="">GIỚI THIỆU</a></li>
@@ -45,7 +46,6 @@
                 <div class="header__user">
                     <div class="user__auth">
                         <i class="fas fa-user auth__icon"></i>
-                        
                     </div>
                     <div class="user__search">
                         <i class="fas fa-search search__icon "></i>
@@ -63,7 +63,7 @@
                                 <div class="cart-item__details">
                                     <a href="#"><img src="../img/product-8.jpg" alt="" class="cart-item__img"></a>
                                     <div class="cart-item__info">
-                                        <a href="#" class="cart-item__info--name">Flowers daisy pink stick</a>
+                                        <a href="#" class="cart-item__info--name">Flowers daisy pink stick (1)</a>
                                         <div class=cart-item__price-info>
                                             <span class="cart-item__info--amount">1</span> x
                                             <span class="cart-item__info--price">460,000</span> đ
@@ -76,7 +76,7 @@
                                 <div class="cart-item__details">
                                     <a href="#"><img src="../img/product-8.jpg" alt="" class="cart-item__img"></a>
                                     <div class="cart-item__info">
-                                        <a href="" class="cart-item__info--name">Flowers daisy pink stick</a>
+                                        <a href="" class="cart-item__info--name">Flowers daisy pink stick (2)</a>
                                         <div class=cart-item__price-info>
                                             <span class="cart-item__info--amount">1</span> x
                                             <span class="cart-item__info--price">460,000</span> đ
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="cart-item__buy">
-                                <div class="buy-name">Tạm tính: <span class="total">460,000</span> đ</div>
+                                <div class="buy-name">Tạm tính: <span class="total" id="total">1</span> đ</div>
                                 <div class="buy">
                                     <button class="buy__btn btn" name="buy__btn" type="button">THANH TOÁN</button>
                                 </div>
@@ -104,9 +104,22 @@
         require_once "./mvc/views/pages/".$data["page"].".php";
         ?>
     </section>
-    <footer>
-        <h2>dia chi lien lac</h2>
+    <footer style="margin-top:6rem;">
+    <div class="splitter"></div> 
+        <div class="bar">
+            <div class="bar-wrap">
+                <ul class="links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Advertise</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+        <div class="clear"></div>
+        <div class="copyright">&copy;  2020 All Rights Reserved</div>
+        <div class="copyright">DINH CHUNG NAM</div>
+    </div>
+</div>
     </footer>
 </body>
-
+<script type="text/javascript" src="/B1706613/public/js/main.js"></script>
 </html>
