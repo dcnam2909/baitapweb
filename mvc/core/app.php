@@ -9,7 +9,7 @@ class app {
         $arr = $this->urlProcess();
 
         //xu ly controller
-        if (file_exists("./mvc/controller/".$arr[0].".php")){
+        if (isset($arr[0]) && file_exists("./mvc/controller/".$arr[0].".php")){
             $this->controller = $arr[0];
             unset($arr[0]);
         }
@@ -30,7 +30,7 @@ class app {
 
     function urlProcess(){
         //tach url
-        if ( isset($_GET["url"]) ) {
+        if (isset($_GET["url"]) ) {
             return explode("/",filter_var(trim($_GET["url"], "/")));
         }
     }

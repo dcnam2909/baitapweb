@@ -24,6 +24,7 @@
         <div class="item__img-buy">
             <img src="<?php echo "data:image/jpeg;base64," . base64_encode($row["hinh"]); ?>" class="item__img">
             <button class="item__buy btn" type="button" name="buy-now__btn">MUA NGAY</button>
+            <button class="item__buy item--add-to-cart btn" type="button"><i class="fas fa-shopping-cart"></i></button>
         </div>
         <div class="item__info">
             <a href="/B1706613/Home/Details/<?php echo $row["mshh"];?>" class="item__info--name" > <?php echo $row["tenhh"]; ?></a>

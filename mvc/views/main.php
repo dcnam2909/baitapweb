@@ -59,36 +59,11 @@
                     <div class="user__cart">
                         <i class="fas fa-shopping-cart cart__icon"></i>
                         <div class="cart-item">
-                            <div class="cart-item__in-cart">
-                                <div class="cart-item__details">
-                                    <a href="#"><img src="../img/product-8.jpg" alt="" class="cart-item__img"></a>
-                                    <div class="cart-item__info">
-                                        <a href="#" class="cart-item__info--name">Flowers daisy pink stick (1)</a>
-                                        <div class=cart-item__price-info>
-                                            <span class="cart-item__info--amount">1</span> x
-                                            <span class="cart-item__info--price">460,000</span> đ
-                                        </div>
-                                    </div>
-                                    <button type="button" class="cart-item__delete">
-                                        <i class="fas fa-times cart-item__delete--icon"></i>
-                                    </button>
-                                </div>
-                                <div class="cart-item__details">
-                                    <a href="#"><img src="../img/product-8.jpg" alt="" class="cart-item__img"></a>
-                                    <div class="cart-item__info">
-                                        <a href="" class="cart-item__info--name">Flowers daisy pink stick (2)</a>
-                                        <div class=cart-item__price-info>
-                                            <span class="cart-item__info--amount">1</span> x
-                                            <span class="cart-item__info--price">460,000</span> đ
-                                        </div>
-                                    </div>
-                                    <button type="button" class="cart-item__delete">
-                                        <i class="fas fa-times cart-item__delete--icon"></i>
-                                    </button>
-                                </div>
+                            <div class="cart-item__in-cart" id="item-in-cart">
+                               
                             </div>
                             <div class="cart-item__buy">
-                                <div class="buy-name">Tạm tính: <span class="total" id="total">1</span> đ</div>
+                                <div class="buy-name">Tạm tính: <span class="total" id="total">0</span> đ</div>
                                 <div class="buy">
                                     <button class="buy__btn btn" name="buy__btn" type="button">THANH TOÁN</button>
                                 </div>

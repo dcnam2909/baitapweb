@@ -1,39 +1,68 @@
+
 // CART
 var removeCartBtn = document.getElementsByClassName('cart-item__delete')
 var itemInCart = document.getElementsByClassName('cart-item__details')
-var btnBuyNow = document.getElementsByClassName('item__buy')
+var btnAddCart = document.getElementsByClassName('item--add-to-cart')
 var namehh = document.getElementsByClassName('item__info--name')
 var pricehh = document.getElementsByClassName('item__info--price')
 var imghh = document.getElementsByClassName('item__img')
 var totalText = document.getElementById('total')
 var priceInCart = document.getElementsByClassName('cart-item__info--price')
-
+var itemInCartID = document.getElementById('item-in-cart')
+var addToCartBtn = document.getElementsByClassName('item--add-to-cart')
 //update cart
 function updateCart() {
     total =0
     for (let i = 0; i < itemInCart.length; i++) {
-        a = parseInt(priceInCart[i].innerText.replace(',',''))
+        a = parseInt(priceInCart[i].innerText.replaceAll(',',''))
         total += a
     }
     totalText.innerText = total.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
 
 // remove cart
-for (let i = 0; i < removeCartBtn.length; i++){
-    var unCart = removeCartBtn[i]
-    unCart.addEventListener('click', function(){
-        itemInCart[i].remove()
-        updateCart()
+
+
+// buy button
+function addToCart(name, price, imgSrc, itemSrc) {
+    var item = `
+        <a href="#"><img src="${imgSrc}"  class="cart-item__img"></a>
+        <div class="cart-item__info">
+            <a href="${itemSrc}" class="cart-item__info--name">${name}</a>
+            <div class=cart-item__price-info>
+                <span class="cart-item__info--amount">1</span> x
+                <span class="cart-item__info--price">${price}</span> đ
+            </div>
+        </div>
+        <button type="button" class="cart-item__delete" onclick="removeItem()">x</button>
+    `
+
+    var cartDiv = document.createElement('div')
+    cartDiv.className = "cart-item__details"
+    cartDiv.innerHTML = item
+    itemInCartID.appendChild(cartDiv)
+    updateCart()
+}
+
+for (let i =0; i<document.getElementsByClassName('item').length; i++){
+    addToCartBtn[i].addEventListener('click', function(){
+        var img = document.getElementsByClassName('item__img')[i].src
+        var name = document.getElementsByClassName('item__info--name')[i].innerText
+        var gia = document.getElementsByClassName('item__info--price')[i].innerText
+        var nameSrc = document.getElementsByClassName('item__info--name')[i].href
+        addToCart(name, gia, img, nameSrc)
     })
 }
 
-// buy button
-for (let i = 0; i < btnBuyNow.length; i++){
-    var buy = btnBuyNow[i]
-    buy.addEventListener('click', function(){
-        
-    })
-}
+function removeItem(){
+    removePos = event.target
+    removePos.parentElement.remove()
+    updateCart()
+   }
+
+
+
+
 
 // banner
 
@@ -75,7 +104,7 @@ function leftMove() {
 }
 
 
-setInterval(rightMove, 5000)
+//setInterval(rightMove, 5000)
 
 
 // Details

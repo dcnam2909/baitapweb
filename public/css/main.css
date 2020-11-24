@@ -444,6 +444,9 @@ hr {
     background-color: white;
     outline: none;
     cursor: pointer;
+    font-weight: bolder;
+    color: gray;
+    font-size: 1rem;
 }
 
 .cart-item__delete--icon {
@@ -558,9 +561,9 @@ hr {
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    left: 0;
+    left: -70px;
     right: 0;
-    top: 50%;
+    top: 45%;
     width: 8rem;
     height: 3rem;
     animation: showup ease-in 0.2s;
@@ -574,7 +577,17 @@ hr {
 
 .item__buy:active {
     transform: translateY(2px);
+}
 
+.item--add-to-cart {
+    left: 120px;
+    right: 0;
+    top: 45%;
+    width: 3.5rem;
+}
+
+.item--add-to-cart i {
+    color: white;
 }
 
 .item__info {
