@@ -58,9 +58,7 @@ function removeItem(){
     removePos = event.target
     removePos.parentElement.remove()
     updateCart()
-   }
-
-
+}
 
 
 
@@ -86,6 +84,7 @@ function rightMove() {
             }
         }
     }
+    
 }
 
 function leftMove() {
@@ -104,7 +103,7 @@ function leftMove() {
 }
 
 
-//setInterval(rightMove, 5000)
+//setTimeout(rightMove, 5000)
 
 
 // Details

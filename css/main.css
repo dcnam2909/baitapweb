@@ -739,26 +739,6 @@ footer .bar-wrap {
 
 }
 
-.links {
-    float: left;
-    list-style: none outside none;
-    position: relative;
-}
-
-.links li {
-    float: left;
-    margin-right: 10px;
-}
-
-.links a {
-    color: #778888;
-    font-size: 2rem;
-}
-
-.links a:hover {
-    color: black;
-}
-
 
 
 .copyright {
