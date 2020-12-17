@@ -7,33 +7,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/resetcss.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Trispace&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
     <title>V Bird</title>
 </head>
 
 <body>
     <header>
-        <div class="header__top border__container">
-            <div class="top max-width">
-                <span class="top__left">Welcome to VBird store</span>
-                <div class="top__right">
-                    <a href="#" class="right__fb">
-                        <i class="fab fa-facebook-f right__icon"></i>
-                    </a>
-                    <a href="#" class="right__insta">
-                        <i class="fab fa-instagram right__icon"></i>
-                    </a>
-                </div>
+        <div class="container-fluid flex">
+            <span class="ml-auto">Welcome to VBird store</span>
+            <div class="mr-auto">
+                <a href="#" class="right__fb">
+                    <i class="fab fa-facebook-f right__icon"></i>
+                </a>
+                <a href="#" class="right__insta">
+                    <i class="fab fa-instagram right__icon"></i>
+                </a>
             </div>
         </div>
         <div class="header__main border__container">
             <div class="header__navbar max-width">
                 <a href="../view/home.php" class="header__name">VBIRD</a>
+                <div class="navbar">
                 <ul class="header__nav">
-                    <li class="header__nav-item "><a class="item__link" href="/B1706613/">TRANG CHỦ</a></li>
+                    <li class="header__nav-item "><a class="item__link" href="../view/home.php">TRANG CHỦ</a></li>
                     <li class="header__nav-item "><a class="item__link" href="">GIỚI THIỆU</a></li>
                     <li class="header__nav-item sanpham"><a class="item__link" href="">SẢN PHẨM</a>
                         <ul class="sanpham-category">
@@ -64,8 +66,6 @@
                         <i class="fas fa-shopping-cart cart__icon"></i>
                         <div class="cart-item">
                             <div class="cart-item__in-cart" id="item-in-cart">
-
-
                             </div>
                             <div class="cart-item__buy">
                                 <div class="buy-name">Tạm tính: <span class="total" id="total">0</span> đ</div>
@@ -75,6 +75,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
