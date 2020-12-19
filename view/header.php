@@ -7,8 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <title>Trang chủ</title>
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
     <header>
@@ -26,7 +25,7 @@
 
         <div class="bg-light">
             <nav class="navbar navbar-expand-lg navbar-light containter">
-                <a href="#" class="navbar-brand ml-5 brand-logo"><img src="../img/logotest.png" alt="" srcset=""></a>
+                <a href="home.php" class="navbar-brand ml-5 brand-logo"><img src="../img/logotest.png" alt="" srcset=""></a>
     
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
@@ -35,22 +34,29 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                     <ul class="navbar-nav ml-auto mr-5">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">Trang chủ</a>
+                            <a class="nav-link active" href="home.php">Trang chủ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Giới thiệu</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" href="#" >Sản phẩm</a>
+                            <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" href="all.php?page=1" >Sản phẩm</a>
                             <div class="dropdown-menu shadow">
-                                <a class="dropdown-item" href="#"> 1</a>
-                                <a class="dropdown-item" href="#"> 2</a>
-                                <a class="dropdown-item" href="#"> 3</a>
+                            <?php 
+                                require_once "./connDB.php";
+                                $query = "SELECT tennhom from nhomhanghoa";
+                                $getDanhMucHH = mysqli_query($conn, $query);
+                                while ($row = mysqli_fetch_array($getDanhMucHH)){
+                                    echo '<a class="dropdown-item" href="#">'. $row["tennhom"].' </a>';
+                                }
+
+                            ?>
+
                             </div>
                         </li>
                         <li class="nav-item" style="margin-right: 2rem;">
                             <div class=" btn-cart">
-                                <button class="m-2 btn btn-primary"><i class="fas fa-shopping-cart"></i></button>
+                                <a href="#"></a><button class="m-2 btn btn-primary"><i class="fas fa-shopping-cart"></i></button></a>
                                 <div class="cart shadow rounded">
                                     <div class=" cart-item d-flex justify-content-between border border-dark rounded p-2">
                                         <img class="border-light rounded" src="../img/product-7.jpg" alt="" srcset="">
@@ -179,95 +185,3 @@
         </div>
     </header>
 
-    <div class="container banner--slide" style="margin-top: 4rem;">
-        <div id="slideBanner" class="carousel slide" data-ride="carousel">
-            <ul class="carousel-indicators">
-                <li data-target="#slideBanner" data-slide-to="0" class="active"></li>
-                <li data-target="#slideBanner" data-slide-to="1"></li>
-                <li data-target="#slideBanner" data-slide-to="2"></li>
-            </ul>
-            <div class="carousel-inner ">
-                <div class="carousel-item active ">
-                    <img class="banner__img" src="../img/banner-1.png" style="width: 100%; height: 100%;" alt="banner1">
-                </div>
-                <div class="carousel-item">
-                    <img class="banner__img" src="../img/banner2.png" style="width: 100%; height: 100%;" alt="banner2">
-                </div>
-                <div class="carousel-item">
-                    <img class="banner__img" src="../img/banner3.png" style="width: 100%; height: 100%;" alt="banner3">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#slideBanner" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#slideBanner" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
-        </div>
-    </div>
-    
-    <div class="container " style="margin-top: 5rem;">
-        <div class="d-flex justify-content-center pb-4 border-bottom border-dark" style="font-family: 'Indie Flower', cursive; font-size: 2rem;">Sản phẩm mới nhất</div>
-    </div>
-
-    <section class="container" style="margin-top: 5rem;">
-        <div class="mr-auto ml-auto row">
-            <div class="col-lg-3 col-md-6" style="margin-bottom: 5rem;">
-                <a href="#" class="item">
-                    <img src="../img/product-7.jpg" alt="" class="mb-3 border w-100 item__img">
-                    <div class="item__info my-2">
-                        <div class="item--name"><a href="">Bông xịn</a></div>
-                        <div class="item--price d-flex justify-content-between">
-                            <div class="price price-nodiscount">1000000000</div>
-                            <strike class="price price-discount mr-5">999999</strike>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-around item--control">
-                        <button class="btn btn-primary">Mua ngay</button>
-                        <button class="btn btn-primary w-25"><i class="fas fa-shopping-cart"></i></button>
-                    </div>
-                    <div class="item--discount">25%</div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6" style="margin-bottom: 5rem;">
-                <a href="#" class="item">
-                    <img src="../img/product-7.jpg" alt="" class="mb-3 border w-100 item__img">
-                    <div class="item__info my-2">
-                        <div class="item--name"><a href="">Bông xịn</a></div>
-                        <div class="item--price d-flex justify-content-between">
-                            <div class="price price-nodiscount">1000000000</div>
-                            <strike class="price price-discount mr-5">999999</strike>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-around item--control">
-                        <button class="btn btn-primary">Mua ngay</button>
-                        <button class="btn btn-primary w-25"><i class="fas fa-shopping-cart"></i></button>
-                    </div>
-                    <div class="item--discount">25%</div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-6" style="margin-bottom: 5rem;">
-                <a href="#" class="item">
-                    <img src="../img/product-7.jpg" alt="" class="mb-3 border w-100 item__img">
-                    <div class="item__info my-2">
-                        <div class="item--name"><a href="">Bông xịn</a></div>
-                        <div class="item--price d-flex justify-content-between">
-                            <div class="price price-nodiscount">1000000000</div>
-                            <strike class="price price-discount mr-5">999999</strike>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-around item--control">
-                        <button class="btn btn-primary">Mua ngay</button>
-                        <button class="btn btn-primary w-25"><i class="fas fa-shopping-cart"></i></button>
-                    </div>
-                    <div class="item--discount">25%</div>
-                </a>
-            </div>
-        </div>
-    </section>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-    <script src="../js/home.js"></script>
-</body>
-</html>
