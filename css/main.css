@@ -427,6 +427,126 @@ footer {
     opacity: 1 !important;
 }
 
+/* checkout */
+.checkout-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.checkout-item__img {
+    width: 150px;
+}
+
+.checkout-item__img img {
+    width: 100%;
+}
+
+.checkout-item__content {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+.checkout-item__info {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.checkout-item__name-link {
+    color: black !important;
+}
+
+.checkout-item__price {
+    display: flex;
+    flex-direction: column;
+    color: red;
+    font-weight: normal;
+}
+
+.checkout-item__price--discount {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.checkout-item__price--nodiscount {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.checkout-item__content {
+    width: calc(100% - 150px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+
+
+.checkout-item__control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.control-group {
+    display: flex;
+    margin-right: 1rem;
+}
+
+
+
+.checkout-item__control--minus {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.checkout-item__control--count {
+    border: solid 1px #007bff;
+    border-left: 0;
+    border-right: 0;
+    outline: none;
+    width: 40px;
+    font-size: 1rem;
+}
+
+.checkout-item__control--count:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .5);
+}
+
+.checkout-item__control--plus {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.checkout-panel {
+    height: 33rem;
+    padding: 1rem;
+}
+
+.checkout-panel h2 {
+    font-weight: bold;
+}
+
+.checkout {
+    font-weight: bold;
+    padding: 1rem 1rem 1rem 2rem;
+
+    font-size: 1.2rem;
+}
+
+.checkout span {
+    color: red;
+}
+
+.checkout--btn {
+    width: 15rem;
+    height: 3.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
 
 @media only screen and (max-width: 991px) {
     .cart {
