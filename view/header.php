@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +81,10 @@
                         </li>
 
                         <li class="nav-item">
-                            <button class="m-2 btn btn-primary" data-toggle="modal" data-target="#myModalLogin">Đăng nhập</button>
+                        <?php if (isset($_SESSION['username']))
+                            echo '<p style="font-weight: bold;position: relative;top: 15px;left: -15px;">Xin chào: <span style="color:red;">'.$_SESSION['username'].'</span></p>';
+                        else echo '<button class="m-2 btn btn-primary" data-toggle="modal" data-target="#myModalLogin">Đăng nhập</button>';
+                            ?>
                             <div class="modal fade" id="myModalLogin">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
@@ -88,85 +93,92 @@
                                             <h4 class="modal-title">Đăng nhập</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
+
                                         <!-- Modal body -->
                                         <div class="modal-body">
-                                            <form action="" method="post" class="form--login" name="form--login" id="form--login">
+                                            <form action="login_reg.php" method="post" class="form--login" name="form--login" id="form--login">
                                                 <div class="form-group mb-4">
                                                     <label class="mr-3" for="username">Tên đăng nhập/Email: </label>
-                                                    <input class="form-control" type="text" name="username" id="username"placeholder="Nhập tên đăng nhập/Email">
+                                                    <input class="form-control" type="text" name="username" id="username"placeholder="Nhập tên đăng nhập/Email" required>
                                                     <div class="alert-danger rounded">
                                                         <!-- <div class="p-2 mt-2"><strong class="">Waring!</strong> Tên đăng nhập/Email không được để trống.</div>     -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label class="mr-3" for="password">Mật khẩu: </label>
-                                                    <input class="form-control" type="password" name="password" id="password" placeholder="Nhập mật khẩu">
+                                                    <input class="form-control" type="password" name="password" id="password" placeholder="Nhập mật khẩu" required>
                                                     <div class="alert-danger rounded">
                                                         <!-- <div class="p-2 mt-2"><strong class="">Waring!</strong> Mật khẩu không được để trống.</div> -->
                                                     </div>
                                                 </div>
                                             </form>
-                                        </div>
-                                        <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                                            <button name="login" type="submit" form="form--login" class="btn btn-primary">Đăng nhập</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                         </div>
+                                        </div>
+                                        <!-- Modal footer -->
                                     </div>
                                 </div>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <button class="m-2 btn btn-primary" data-toggle="modal" data-target="#myModalReg">Đăng kí</button>
+                            <?php if (isset($_SESSION['username']))
+                                echo '<form action="login_reg.php" method="post" class="form--logout" name="form--logout" id="form--logout">
+                                            <button name="logout" value="logout" form="form--logout" type="submit" class="m-2 btn btn-primary">Đăng xuất</button>
+                                        </form>';
+                            else
+                            echo '<button class="m-2 btn btn-primary" data-toggle="modal" data-target="#myModalReg">Đăng kí</button>';
+                            ?>
                             <div class="modal fade" id="myModalReg">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <!-- Modal Header -->
                                         <div class="modal-header">
                                             <h4 class="modal-title">Đăng kí</h4>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>   
                                         </div>
                                         <!-- Modal body -->
                                         <div class="modal-body">
-                                            <form action="" method="post" class="form--reg" name="form--reg" id="form--reg">
+                                            <form action="login_reg.php" method="post" class="form--reg" name="form--reg" id="form--reg">
                                                 <div class="form-group mb-4">
                                                     <label for="fullname" class="mr-3">Họ và tên:</label>
-                                                    <input class="form-control" type="text" name="fullname" id="fullname"placeholder="Nhập họ và tên">
+                                                    <input class="form-control" type="text" name="fullname" id="fullname"placeholder="Nhập họ và tên" required>
                                                     <div class="alert-danger rounded">
                                                         <!-- <div class="p-2 mt-2"><strong class="">Waring!</strong> Tên đăng nhập/Email không được để trống.</div>     -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label for="email" class="mr-3">Email:</label>
-                                                    <input class="form-control" type="text" name="email" id="email"placeholder="Nhập email">
+                                                    <input class="form-control" type="text" name="email" id="email"placeholder="Nhập email" required>
                                                     <div class="alert-danger rounded">
                                                         <!-- <div class="p-2 mt-2"><strong class="">Waring!</strong> Tên đăng nhập/Email không được để trống.</div>     -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label for="enterpassword" class="mr-3">Mật khẩu:</label>
-                                                    <input class="form-control" type="password" name="enterpassword" id="enterpassword"placeholder="Nhập mật khẩu">
+                                                    <input class="form-control" type="password" name="enterpassword" id="enterpassword"placeholder="Nhập mật khẩu" required>
                                                     <div class="alert-danger rounded">
                                                         <!-- <div class="p-2 mt-2"><strong class="">Waring!</strong> Tên đăng nhập/Email không được để trống.</div>     -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label for="enterrepassword" class="mr-3">Kiểm tra mật khẩu:</label>
-                                                    <input class="form-control" type="password" name="enterrepassword" id="enterrepassword"placeholder="Nhập lại mật khẩu">
+                                                    <input class="form-control" type="password" name="enterrepassword" id="enterrepassword"placeholder="Nhập lại mật khẩu" required>
                                                     <div class="alert-danger rounded">
                                                         <!-- <div class="p-2 mt-2"><strong class="">Waring!</strong> Tên đăng nhập/Email không được để trống.</div>     -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label for="phonenumb" class="mr-3">Số điện thoại:</label>
-                                                    <input class="form-control" type="tel" name="phonenumb" id="phonenumb"placeholder="Nhập số điện thoại">
+                                                    <input class="form-control" type="tel" name="phonenumb" id="phonenumb"placeholder="Nhập số điện thoại" required>
                                                     <div class="alert-danger rounded">
                                                         <!-- <div class="p-2 mt-2"><strong class="">Waring!</strong> Tên đăng nhập/Email không được để trống.</div>     -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label for="address" class="mr-3">Địa chỉ:</label>
-                                                    <input class="form-control" type="text" name="address" id="address"placeholder="Nhập số điện thoại">
+                                                    <input class="form-control" type="text" name="address" id="address"placeholder="Nhập địa chỉ" required>
                                                     <div class="alert-danger rounded">
                                                         <!-- <div class="p-2 mt-2"><strong class="">Waring!</strong> Tên đăng nhập/Email không được để trống.</div>     -->
                                                     </div>
@@ -175,7 +187,7 @@
                                         </div>
                                         <!-- Modal footer -->
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary">Đăng kí</button>
+                                            <button name ="reg" type="submit" form="form--reg" class="btn btn-primary">Đăng kí</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
