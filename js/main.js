@@ -1,124 +1,88 @@
-
-// CART
-var removeCartBtn = document.getElementsByClassName('cart-item__delete')
-var itemInCart = document.getElementsByClassName('cart-item__details')
-var btnAddCart = document.getElementsByClassName('item--add-to-cart')
-var namehh = document.getElementsByClassName('item__info--name')
-var pricehh = document.getElementsByClassName('item__info--price')
-var imghh = document.getElementsByClassName('item__img')
-var totalText = document.getElementById('total')
-var priceInCart = document.getElementsByClassName('cart-item__info--price')
-var itemInCartID = document.getElementById('item-in-cart')
-var addToCartBtn = document.getElementsByClassName('item--add-to-cart')
-//update cart
-function updateCart() {
-    total =0
-    for (let i = 0; i < itemInCart.length; i++) {
-        a = parseInt(priceInCart[i].innerText.replaceAll(',',''))
-        total += a
+var btnAddToCart = document.querySelectorAll('.add-to-cart');
+var inCart = JSON.parse(localStorage.getItem('products'));
+btnAddToCart.forEach(function(element){
+    element.addEventListener('click',addToCart);
+    function addToCart(){
+        while(!element.classList.contains('item')){
+            element = element.parentElement;
+        }
+        var img = element.querySelector('a img').src;
+        var name = element.querySelector('.item__info .item--name a').textContent;
+        var url =  element.querySelector('.item__info .item--name a').href;
+        var price = element.querySelector('.item__info .item--price .price-discount').textContent;
+        var count = 1;
+        var result = inCart.find(function(item){
+            if (item.names === name)
+            return true;
+        });
+        if (!result){
+            inCart.push({
+                names : name,
+                images : img,
+                urls : url,
+                prices: price,
+                counts: count
+            })
+        } else {inCart.forEach(function(a){
+            if (a.names === name) {
+                a.counts +=1;
+            }
+        })}
+        cartRender();
+        localStorage.setItem('products',JSON.stringify(inCart));
     }
-    totalText.innerText = total.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-}
-
-// remove cart
+});
 
 
-// buy button
-function addToCart(name, price, imgSrc, itemSrc) {
-    var item = `
-        <a href="#"><img src="${imgSrc}"  class="cart-item__img"></a>
-        <div class="cart-item__info">
-            <a href="${itemSrc}" class="cart-item__info--name">${name}</a>
-            <div class=cart-item__price-info>
-                <span class="cart-item__info--amount">1</span> x
-                <span class="cart-item__info--price">${price}</span> đ
+function cartRender(){
+    var cart = document.getElementById('cart');
+    var content = inCart.map(function(item){
+        return `<div class=" cart-item d-flex justify-content-between border border-dark rounded p-2">
+        <img class="border-light rounded" src="${item.images}" alt="" srcset="">
+        <div class="cart-item__info d-flex flex-column justify-content-around">
+            <a href="${item.urls}" class="cart-item__name">${item.names}</a>
+            <div class="cart-item__price d-flex align-items-center">
+                <span class="item__price pr-2">${item.prices}</span><span style="color: black;font-weight: bolder;">&times;</span>
+                <input class="item__count ml-2" type="number" name="item-count" id="item-count "min="1" value="${item.counts}">
             </div>
         </div>
-        <button type="button" class="cart-item__delete" onclick="removeItem()">x</button>
-    `
+        <button class="btn btn-dark btn-outline-light delete-item rounded-circle">&times;</button>
+        </div>`;
+    });
+    cart.innerHTML = content.join('');
+}
+cartRender();
 
-    var cartDiv = document.createElement('div')
-    cartDiv.className = "cart-item__details"
-    cartDiv.innerHTML = item
-    itemInCartID.appendChild(cartDiv)
-    updateCart()
+
+//checkout
+
+function checkOutRender(){
+    var checkout = document.getElementById('checkout-item');
+
+    var content = inCart.map(function(item){
+        return `<div class="checkout-item mb-3 shadow">
+        <div class="checkout-item__img">
+            <img src="${item.images}" alt="">
+        </div>
+        <div class="checkout-item__content">
+            <div class="checkout-item__info">
+                <a href="${item.urls}" class="checkout-item__name-link"><div class="checkout-item__name">${item.names}</div></a>
+                <div class="checkout-item__price">
+                    <span class="checkout-item__price--discount">${item.price} <u>đ</u></span>
+                </div>
+            </div>
+            <div class="checkout-item__control">
+                <div class="control-group">
+                    <button class="btn btn-outline-primary checkout-item__control--minus">&minus;</button>
+                    <input type="tel" name="checkout-item__control--count" value="${item.counts}" class="checkout-item__control--count">
+                    <button class="btn btn-outline-primary checkout-item__control--plus">&plus;</button>
+                </div>
+                <button class="btn btn-primary checkout-item__control--delete">&times;</button>
+            </div>
+            </div>
+        </div>`;
+    });
+    checkout.innerHTML = content.join('');
 }
 
-for (let i =0; i<document.getElementsByClassName('item').length; i++){
-    addToCartBtn[i].addEventListener('click', function(){
-        var img = document.getElementsByClassName('item__img')[i].src
-        var name = document.getElementsByClassName('item__info--name')[i].innerText
-        var gia = document.getElementsByClassName('item__info--price')[i].innerText
-        var nameSrc = document.getElementsByClassName('item__info--name')[i].href
-        addToCart(name, gia, img, nameSrc)
-    })
-}
-
-function removeItem(){
-    removePos = event.target
-    removePos.parentElement.remove()
-    updateCart()
-}
-
-
-
-// banner
-
-var banner = document.getElementById('banner')
-var bannerBtnLeft = document.getElementById('left--btn')
-var bannerBtnRight = document.getElementById('right--btn')
-var bannerImg = document.getElementById('banner__img')
-var img = document.getElementsByClassName('banner-img')
-
-function rightMove() {
-    for (let i = 0; i <= img.length; i++) {
-        if (img[i].hidden == false) {
-            img[i].hidden = true
-            if (i + 1 < img.length) {
-                img[++i].hidden = false
-                break
-            } else {
-                img[img.length - 1].hidden = true
-                img[0].hidden = false
-                break
-            }
-        }
-    }
-    
-}
-
-function leftMove() {
-    for (let i = 0; i < img.length; i++) {
-        if (img[i].hidden == false) {
-            img[i].hidden = true
-            if (i - 1 < 0) {
-                img[img.length - 1].hidden = false
-                break
-            } else {
-                img[--i].hidden = false
-                break
-            }
-        }
-    }
-}
-
-
-//setTimeout(rightMove, 5000)
-
-
-// Details
-
-var btnMinus = document.getElementById('btn-minus')
-var btnPlus = document.getElementById('btn-plus')
-var amount = document.getElementById('amount')
-
-btnMinus.addEventListener('click' ,function (){
-    if (amount.innerText != 1) {
-        amount.innerText--;
-    } else return null
-})
-btnPlus.addEventListener( 'click', function (){
-    amount.innerText++;
-})
-
-
+checkOutRender();

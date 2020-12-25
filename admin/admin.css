@@ -8,6 +8,14 @@ a:hover {
     color: white;
 }
 
+nav {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+}
+
 .dropdown-menu {
     left: unset !important;
     right: 0 !important;
@@ -84,9 +92,12 @@ a:hover {
     font-size: 100%;
     margin: 0;
 }
-.container-fluid{
+
+.container-fluid {
     padding: 0 25px;
+    margin-top: 70px;
 }
+
 .content {
     position: relative;
     display: flex;
