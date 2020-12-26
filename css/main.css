@@ -504,12 +504,11 @@ footer {
 }
 
 .checkout-item__control--count {
-    border: solid 1px #007bff;
-    border-left: 0;
-    border-right: 0;
-    outline: none;
-    width: 40px;
-    font-size: 1rem;
+    border: solid 1px #007bff !important;
+    outline: none !important;
+    width: 40px !important;
+    font-size: 1rem !important;
+    margin-right: 5px !important;
 }
 
 .checkout-item__control--count:focus {

@@ -1,23 +1,23 @@
-<?php require "./header.php";?>
+<?php require "./header.php"; ?>
 <title> Thanh toán</title>
 <div class="container mt-5">
     <a href="../view/home.php" class="all-move-to-home">TRANG CHỦ</a>
     <span>/ THANH TOÁN</span>
 </div>
-<div class="container my-5" >
+<div class="container my-5">
     <div class="row justify-content-between ">
         <div class=" my-5 col-lg-8 col-md-12 col-sm-12 " id="checkout-item">
-            
+
             <!-- here -->
-            
+
         </div>
 
         <div class="col-lg-4 border checkout-panel">
             <h2>Tính tiền</h2>
             <div class="checkout">
-                <div class="checkout__price">Tổng: <span>1000000 <u>đ</u></span></div>
-                <div class="checkout__discount">Giảm giá: <span>10 <u>%</u></div>
-                <div class="checkout__total-discount">Thanh toán: <span>990000 <u>đ</u></div>
+                <div class="checkout__price"></div>
+                <div class="checkout__shipping"></div>
+                <div class="checkout__total-discount"></div>
             </div>
             <div class="checkout__client-info my-4">
                 <div class="input-group mb-3">
@@ -50,8 +50,4 @@
     </div>
 </div>
 
-<?php require "./footer.php";?>
-
-
-
-
+<?php require "./footer.php"; ?>
