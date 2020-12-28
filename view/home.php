@@ -44,7 +44,7 @@
         ?>
         <div class="col-lg-3 col-md-6 container-item">
             <div href="#" class="item">
-                <a href="#"><img src="data:image/jpeg;base64,<?php echo base64_encode($row["hinh"]); ?> " alt="" class="item--img"></a>
+                <a href="#"><img src="data:image/jpeg;base64,<?php echo $row["hinh"]; ?> " alt="" class="item--img"></a>
                 <div class="item__info my-2">
                     <div class="item--name"><a href="details.php?id=<?php echo ($row["mshh"]);?> "><?php echo ($row["tenhh"]); ?></a></div>
                     <div class="item--price">

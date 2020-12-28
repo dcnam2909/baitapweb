@@ -24,30 +24,27 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Họ tên (*): </span>
                     </div>
-                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input type="text" class="form-control" id="checkout__name" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Địa chỉ (*): </span>
                     </div>
-                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input type="text" class="form-control" id="checkout__address" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">Số điện thoại (*): </span>
                     </div>
-                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    <input type="text" class="form-control" id="checkout__phone" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                 </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">Email (*): </span>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                </div>
+                
             </div>
-            <button class="btn btn-info float-right checkout--btn">MUA NGAY</button>
+            <button class="btn btn-info float-right checkout--btn" id="checkout--btn">MUA NGAY</button>
         </div>
     </div>
 </div>
+
+
 
 <?php require "./footer.php"; ?>

@@ -34,7 +34,8 @@ btnAddToCart.forEach(function(btnAdd){
                 images : img,
                 urls : url,
                 prices: price,
-                counts: count
+                counts: count,
+                id: url.split('id=')[1]
             })
         } else {inCart.forEach(function(a){
             if (a.names === name) {
@@ -185,3 +186,40 @@ function updateTotalCheckout(){
         panelCheckout.querySelector('.checkout__total-discount').innerHTML = `Thanh toán: <span>${total + shipping} <u>đ</u>`;
     }
 }
+
+
+
+var checkoutBtn = $("#checkout--btn");
+checkoutBtn.on('click',function(){
+    var price = document.querySelector('.checkout__total-discount span').textContent.split(' ')[0]
+    var clientName= document.querySelector('#checkout__name').value;
+    var clientAddress= document.querySelector('#checkout__address').value;
+    var clientPhone= document.querySelector('#checkout__phone').value;
+    inCart = [];
+    var bill = JSON.stringify({
+        name: clientName,
+        address: clientAddress,
+        phone: clientPhone,
+        total: price,
+        product:inCart
+    })
+
+    $.ajax({
+        type: "POST",
+        url:'../admin/product.php',
+        dataTypes: 'json',
+        data: {bill: bill},
+        success: function(){
+            alert("Đặt hàng thành công chờ xác nhận!");
+            cartRender();
+            checkOutRender();
+            updateTotalCheckout();
+        },
+        error : function() {
+            alert('Đã có lỗi xảy ra vui lòng thử lại');
+        }
+    });
+    
+});
+
+

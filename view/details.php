@@ -11,7 +11,7 @@
 <section>
 <div class="container mt-5 details">
     <div href="#" class="row item">
-        <a href="#" class="col-lg-6 col-sm-12 details__img-link"><img src="data:image/jpeg;base64,<?php echo base64_encode($row["hinh"]); ?> " alt="" class="item--img details__img">
+        <a href="#" class="col-lg-6 col-sm-12 details__img-link"><img src="data:image/jpeg;base64,<?php echo $row["hinh"]; ?> " alt="" class="item--img details__img">
         <div class="item--discount details__discount"><?php echo $row["giamgia"];?>%</div></a>
         <div class="col-lg-6 col-sm-12 row">
             <div class="item__info my-2 details__info">
