@@ -12,6 +12,7 @@ require "../view/connDB.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="admin.css">
     <title>Quản lý trang bán hàng</title>
+   
 </head>
 
 <body>
@@ -64,10 +65,10 @@ require "../view/connDB.php";
                             <tbody>
                             <?php
                             $queryDH = mysqli_query($conn,"SELECT * FROM dathang");
-                            while($donhang= mysqli_fetch_array($queryDH)){
+                            while($donhang = mysqli_fetch_array($queryDH)){
                             ?>
-                                <tr>
-                                    <th scope="row"><?php echo $donhang["sodondh"]?></th>
+                                <tr class="donhang-item">
+                                    <th scope="row" class="donhang-id"><?php echo $donhang["sodondh"]?></th>
                                     <td><?php 
                                     $mskh = $donhang["mskh"];
                                     $queryKH = mysqli_query($conn,"SELECT hotenkh, diachi FROM khachhang WHERE mskh = '$mskh'");
@@ -77,20 +78,51 @@ require "../view/connDB.php";
                                     <td><?php echo $donhang['tongtien'] ?> <u>đ</u></td>
                                     <td>
                                     <?php 
-                                    if ($donhang['trangthai']=== 'Chờ xác nhận') 
-                                        echo '<button type="button" class="btn btn-success ">Xác nhận</button>
-                                            <button type="button" class="btn btn-success disabled"><a href="">Chờ xác nhận</a></button>';
-                                    else echo '<button type="button" class="btn btn-success disabled ">Xác nhận</button>
-                                            <button type="button" class="btn btn-success "><a href="">Chờ xác nhận</a></button>';   
-                                    ?>
-                                        
+                                    if ($donhang['trangthai']=== 'Chờ xác nhận')
+                                        echo '<button type="button" class="btn btn-success donhang--btnxacnhan">Xác nhận</button>';
+                                        else echo '<button type="button" class="btn btn-success disabled ">Xác nhận</button>';
+                                        ?>
+                                        <button type="button" class="btn btn-success disabled "><a href="">Chờ xác nhận</a></button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-success"><a href="">Xem chi tiết</a></button>
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal<?php echo $donhang["sodondh"]?>">Xem chi tiết</button>
+                                        <div class="modal fade" id="modal<?php echo $donhang["sodondh"]?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Chi tiết đơn hàng số <?php echo $donhang["sodondh"];?></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <?php 
+                                                $sodonhang = (int)$donhang["sodondh"];
+                                                $strqueryCT = "SELECT hh.tenhh, ct.soluong, hh.gia,hh.hinh FROM `chitietdathang` ct JOIN `hanghoa` hh  ON ct.mshh = hh.mshh  WHERE sodondh = ".$sodonhang." GROUP BY ct.mshh";
+                                                $queryCT = mysqli_query($conn,$strqueryCT);
+                                                while($chitiet = mysqli_fetch_array($queryCT)){
+                                                    echo '<div class="d-flex justify-content-between">';
+                                                    echo '<img src="data:image/jpeg;base64,'.$chitiet["hinh"].'" alt="#" style="width:9rem !important;">';
+                                                    echo '<div>';
+                                                    echo '<p>Tên: '.$chitiet["tenhh"].'</p>';
+                                                    echo '<p>Số lượng: '.$chitiet["soluong"].'</p>';
+                                                    echo '<p>Đơn giá: '.$chitiet["gia"].' <u>đ</u></p>';
+                                                    echo '</div>';
+                                                    echo '</div>';
+                                                    echo '<p>____________________________________________________________________</p>';
+                                                } 
+                                                mysqli_free_result($queryCT);
+                                                ?>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
                                     </td>
                                 </tr>
-                            <?php } mysqli_free_result($queryDH);
-                                mysqli_free_result($queryKH);?>
+                            <?php } ;?>
                         </table>
                     </div>
                     <div aria-label="Page navigation example" class="my-3 d-flex justify-content-end">
@@ -103,7 +135,6 @@ require "../view/connDB.php";
                         </ul>
                     </div>
                 </div>
-                
                 <div class="container-fluid khachhang" id="khachhang" hidden>
                     <h1 class="mt-4">Khách hàng</h1>
                     <div class="mt-5 table-responsive-lg">
@@ -156,8 +187,6 @@ require "../view/connDB.php";
                                     <th scope="col">Giá</th>
                                     <th scope="col">Giảm giá</th>
                                     <th scope="col">Mô tả</th>
-                 
-
                                     <th scope="col">Chi tiết</th>
                                 </tr>
                             </thead>
@@ -166,18 +195,84 @@ require "../view/connDB.php";
                                 $queryHH = mysqli_query($conn,"SELECT * FROM hanghoa");
                                 while ($hanghoa= mysqli_fetch_array($queryHH)) {
                                 ?>
-                                    <tr>
-                                        <th scope="row"><?php echo $hanghoa['mshh'];  ?></th>
+                                    <tr class="hanghoa-item">
+                                        <th scope="row" class="hanghoa-id"><?php echo $hanghoa['mshh'];  ?></th>
                                         <td><?php echo $hanghoa['tenhh'];  ?></td>
                                         <td align="center"><img src="data:image/jpeg;base64,<?php echo $hanghoa["hinh"]; ?> " alt="#" style="width: 10rem;"></td>
                                         <td><?php echo $hanghoa['gia'];  ?> <u>đ</u></td>
                                         <td><?php echo $hanghoa['giamgia'];  ?> <span>%</span></td>
-                                       
                                         <td><?php echo $hanghoa['motahh'];  ?></td>
-
                                         <td>
                                             <button type="button" class="btn btn-success xoa-sanpham">Xóa hàng</button>
-                                            <button type="button" class="btn btn-success sua-sanpham">Sửa hàng</button>
+                                            <button type="button" class="btn btn-success sua-sanpham" data-toggle="modal" data-target="#modalSuaHang<?php echo $hanghoa['mshh'];  ?>">Sửa hàng</button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="modalSuaHang<?php echo $hanghoa['mshh'];  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Sửa hàng hóa thứ <?php echo $hanghoa['mshh'];  ?></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="product.php" method="post" name="form-edit-sanpham-<?php echo $hanghoa['mshh'];  ?>" id="form-edit-sanpham-<?php echo $hanghoa['mshh'];  ?>" enctype="multipart/form-data">
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <label  class="input-group-text" id="basic-addon1">Tên sản phẩm:</label>
+                                                            </div>
+                                                            <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" aria-label="Nhập tên sản phẩm" aria-describedby="basic-addon1"  name="sanpham__name--edit">
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <label class="input-group-text"> Nhóm hàng hóa</label>
+                                                            </div>
+                                                            <select class="custom-select" name="sanpham__manhom--edit">
+                                                            <?php
+                                                            $queryNHH = mysqli_query($conn, "SELECT * FROM nhomhanghoa");
+                                                            while($manhom= mysqli_fetch_array($queryNHH)){
+                                                                echo '<option value="'.$manhom["manhom"].'">'.$manhom["tennhom"].'</option>';
+                                                            } mysqli_free_result($queryNHH);?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <label  class="input-group-text">Giá:</label>
+                                                            </div>
+                                                            <input type="text" placeholder="Nhập giá sản phẩm" class="form-control" aria-label="Amount"  name="sanpham__price--edit">
+                                                            <div class="input-group-append">
+                                                                <label  class="input-group-text">VNĐ</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <label  class="input-group-text">Giảm giá:</label>
+                                                            </div>
+                                                            <input type="text" placeholder="Giảm giá sản phẩm" class="form-control" aria-label="Amount" name="sanpham__price-discount--edit">
+                                                            <div class="input-group-append">
+                                                                <label  class="input-group-text">VNĐ</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <label  class="input-group-text">Mô tả sản phẩm</label>
+                                                            </div>
+                                                            <textarea class="form-control" aria-label="With textarea"  name="sanpham__description--edit"></textarea>
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <input type="file" name="sanpham__img--edit">
+                                                        </div>
+                                                    </form>
+                                                    
+                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button form="form-edit-sanpham-<?php echo $hanghoa['mshh'];  ?>" value="<?php echo $hanghoa['mshh'];  ?>" name="sanpham-edit-submit" type="submit" class="btn btn-success">Thêm sản phẩm</button>
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -281,14 +376,11 @@ require "../view/connDB.php";
                 </div>
             </main>
         </div>
-
     </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-    <script src="admin.js"></script>
+    <script src="/B1706613/admin/admin.js"></script>
 </body>
 
 </html>

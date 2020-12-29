@@ -2,6 +2,7 @@ var btnAddToCart = document.querySelectorAll('.add-to-cart');
 var storage = JSON.parse(localStorage.getItem('products'));
 
 //check localStorage
+
 if (storage) {
     var inCart = JSON.parse(localStorage.getItem('products'));
 } else inCart = [];
@@ -195,22 +196,23 @@ checkoutBtn.on('click',function(){
     var clientName= document.querySelector('#checkout__name').value;
     var clientAddress= document.querySelector('#checkout__address').value;
     var clientPhone= document.querySelector('#checkout__phone').value;
-    inCart = [];
-    var bill = JSON.stringify({
+    var billinfo = JSON.stringify({
         name: clientName,
         address: clientAddress,
         phone: clientPhone,
         total: price,
-        product:inCart
-    })
-
+        product: inCart
+    });
+    
     $.ajax({
         type: "POST",
         url:'../admin/product.php',
         dataTypes: 'json',
-        data: {bill: bill},
+        data: {bill: billinfo},
         success: function(){
             alert("Đặt hàng thành công chờ xác nhận!");
+            inCart = [];
+            localStorage.setItem('products',JSON.stringify(inCart));
             cartRender();
             checkOutRender();
             updateTotalCheckout();
@@ -219,7 +221,43 @@ checkoutBtn.on('click',function(){
             alert('Đã có lỗi xảy ra vui lòng thử lại');
         }
     });
-    
 });
 
+
+var btnBuyNows = document.querySelectorAll('.buy-now');
+btnBuyNows.forEach(function(btnBuyNow){
+    btnBuyNow.addEventListener('click',function(){
+        while(!btnBuyNow.classList.contains('item')){
+            btnBuyNow = btnBuyNow.parentElement;
+        }
+        var img = btnBuyNow.querySelector('.item--img').src;
+        var name = btnBuyNow.querySelector('.item--name a').innerText;
+        var url = btnBuyNow.querySelector('.item--name a').href;
+        if (url === "") {
+            url = window.location.href;
+        }
+        var price = btnBuyNow.querySelector('.price-discount').innerText.split(' ')[0];
+        var count = 1;
+        var result = inCart.find(function(item){
+            if (item.names === name)
+            return true;
+        });
+        if (!result){
+            inCart.push({
+                names : name,
+                images : img,
+                urls : url,
+                prices: price,
+                counts: count,
+                id: url.split('id=')[1]
+            })
+        } else {inCart.forEach(function(a){
+            if (a.names === name) {
+                a.counts +=1;
+            }
+        })}
+        localStorage.setItem('products',JSON.stringify(inCart));
+        window.location.href = "checkout.php";
+    });
+});
 

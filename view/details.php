@@ -15,7 +15,7 @@
         <div class="item--discount details__discount"><?php echo $row["giamgia"];?>%</div></a>
         <div class="col-lg-6 col-sm-12 row">
             <div class="item__info my-2 details__info">
-                <div class="item--name details__name"><a href="#"><?php echo $row["tenhh"];?></a></div>
+                <div class="item--name details__name"><a href=""><?php echo $row["tenhh"];?></a></div>
                 <div class="item--price details__price">
                     <span class="price price-discount details__price-discount"><?php echo ($row["gia"])-(($row["gia"])*($row["giamgia"]))/100; ?> <u>đ</u></span>
                     <strike class="price price-nodiscount details__price-nodiscount"><?php echo $row["gia"];?> <u>đ</u></strike>
