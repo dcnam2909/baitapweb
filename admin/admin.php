@@ -1,5 +1,8 @@
 <?php 
 require "../view/connDB.php";
+session_start();
+if (!isset($_SESSION['username']))
+    die();
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +27,9 @@ require "../view/connDB.php";
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i></a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Admin</a>
+                    <a class="dropdown-item" href="#"><?php echo $_SESSION['username'];?></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Đăng xuất</a>
+                    <a class="dropdown-item" href="/B1706613/view/login_reg.php?logout=admin">Đăng xuất</a>
                 </div>
             </li>
         </ul>
@@ -43,7 +46,7 @@ require "../view/connDB.php";
             </div>
             <div class="slide-nav-menu__footer">
                 <div class="">Logged in as:</div>
-                <p>Admin</p>
+                <p><?php echo $_SESSION['username'];?></p>
             </div>
         </div>
         <div class="content">
@@ -357,11 +360,16 @@ require "../view/connDB.php";
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">123</th>
-                                    <td>abcabc</td>
-                                    <td>90000000 <u>đ</u></td>
-                                </tr>
+                            <?php
+                            $getDHDate = mysqli_query($conn,"SELECT COUNT(sodondh) as sluong, DATE(ngaydh) as ngay, SUM(tongtien) as tong FROM dathang GROUP BY DATE(ngaydh)");
+                            while($dh = mysqli_fetch_array($getDHDate)){
+                                echo '<tr>
+                                <th scope="row">'.$dh['ngay'].'</th>
+                                <td>'.$dh['sluong'].'</td>
+                                <td>'.$dh['tong'].' <u>đ</u></td>
+                                </tr>';
+                            }
+                            ?>
                         </table>
                     </div>
                     <div aria-label="Page navigation example" class="my-3 d-flex justify-content-end">

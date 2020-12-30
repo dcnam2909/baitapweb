@@ -114,9 +114,7 @@
                         </li>
                         <li class="nav-item">
                             <?php if (isset($_SESSION['username']))
-                                echo '<form action="login_reg.php" method="post" class="form--logout" name="form--logout" id="form--logout">
-                                            <button name="logout" value="logout" form="form--logout" type="submit" class="m-2 btn btn-primary">Đăng xuất</button>
-                                        </form>';
+                                echo '<a href="login_reg.php?logout=1"><p style="font-weight: bold;position: relative;top: 15px;left: -5px;">Đăng xuất</p></a>';
                             else
                                 echo '<button class="m-2 btn btn-primary" data-toggle="modal" data-target="#myModalReg">Đăng kí</button>';
                             ?>

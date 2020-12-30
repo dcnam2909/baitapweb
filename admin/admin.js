@@ -36,7 +36,7 @@ deleteProductBtns.forEach(function(deleteProductBtn){
             dataTypes: 'json',
             data: {xoahanghoa: idHH},
             success: function(){
-                alert('watit');
+                alert('Đã xóa ID: ',idHH);
                 window.location.reload();
             },
             error : function() {

@@ -1,11 +1,16 @@
 <?php
 require_once "./connDB.php";
 session_start();
-if (isset($_POST['logout'])){
+if (isset($_GET['logout'])){
     if (isset($_SESSION['username'])){
-        unset($_SESSION['username']);
-        header('location: home.php');
-        exit;
+        unset($_SESSION['username']); 
+        if ($_GET['logout']==='admin'){
+            header('location: /B1706613/admin/adminlogin.php');
+            exit;
+        } else {
+            header('location: home.php');
+            exit;
+        }
     }
 }
 

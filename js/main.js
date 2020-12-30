@@ -51,6 +51,10 @@ btnAddToCart.forEach(function(btnAdd){
 
 function cartRender(){
     var cart = document.getElementById('cart');
+    if (typeof inCart !== 'undefined' && inCart.length === 0){
+        cart.innerHTML = '<h1>Chưa có sản phẩm nào</h1>';
+        return;
+    }
     var content = inCart.map(function(item){
         return `
         <div class=" cart-item d-flex justify-content-between border border-dark rounded p-2">
@@ -81,7 +85,6 @@ function cartRender(){
                     cartRender();
                 }
             });
-            
         });
     });
     btnCounts.forEach(function(btnCount){
